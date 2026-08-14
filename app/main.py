@@ -11,13 +11,19 @@ def main():
         
         if cmd == "exit":
             break
+        
         elif cmd.startswith("echo "):
             print(cmd[5:])
+            
         elif cmd.startswith("type "):
-            if cmd[5:] in valid_cmds:
-                print(f"{cmd[5:]} is a shell builtin")
-            else:
-                print(f"{cmd[5:]}: not found")
+            checks = cmd[5:].split(" ")
+            
+            for check_type in checks:
+                if check_type in valid_cmds:
+                    print(f"{check_type} is a shell builtin")
+                else:
+                    print(f"{check_type}: not found")
+                
         else:
             print(f"{cmd}: command not found")
 
